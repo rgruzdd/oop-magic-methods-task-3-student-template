@@ -48,28 +48,28 @@ class Euro(Currency):
         if type(other) == Euro:
             new_value = float(self.value + other.value)
         elif type(other) != Euro:
-            new_value = float(self.value + float(other.to_currency(Euro).split(' ')[0]))
+            new_value = float(self.value + float(other.to_currency(Euro).value))
         return str(new_value) + ' EUR'
 
     def __eq__(self, other):
         if type(other) == Euro:
             new_value = self.value == other.value
         elif type(other) != Euro:
-            new_value = self.value == float(other.to_currency(Euro).split(' ')[0])
+            new_value = self.value == float(other.to_currency(Euro).value)
         return new_value
 
     def __lt__(self, other):
         if type(other) == Euro:
             new_value = self.value < other.value
         elif type(other) != Euro:
-            new_value = self.value < float(other.to_currency(Euro).split(' ')[0])
+            new_value = self.value < float(other.to_currency(Euro).value)
         return new_value
 
     def __gt__(self, other):
         if type(other) == Euro:
             new_value = self.value > other.value
         elif type(other) != Euro:
-            new_value = self.value > float(other.to_currency(Euro).split(' ')[0])
+            new_value = self.value > float(other.to_currency(Euro).value)
         return new_value
 
 class Dollar(Currency):
@@ -106,28 +106,28 @@ class Dollar(Currency):
         if type(other) == Dollar:
             new_value = float(self.value + other.value)
         elif type(other) != Dollar:
-            new_value = float(self.value + float(other.to_currency(Dollar).split(' ')[0]))
+            new_value = float(self.value + float(other.to_currency(Dollar).value))
         return str(new_value) + ' USD'
 
     def __eq__(self, other):
         if type(other) == Dollar:
             new_value = self.value == other.value
         elif type(other) != Dollar:
-            new_value = self.value == float(other.to_currency(Dollar).split(' ')[0])
+            new_value = self.value == float(other.to_currency(Dollar).value)
         return new_value
 
     def __lt__(self, other):
         if type(other) == Dollar:
             new_value = self.value < other.value
         elif type(other) != Dollar:
-            new_value = self.value < float(other.to_currency(Dollar).split(' ')[0])
+            new_value = self.value < float(other.to_currency(Dollar).value)
         return new_value
 
     def __gt__(self, other):
         if type(other) == Dollar:
             new_value = self.value > other.value
         elif type(other) != Dollar:
-            new_value = self.value > float(other.to_currency(Dollar).split(' ')[0])
+            new_value = self.value > float(other.to_currency(Dollar).value)
         return new_value
 
 class Pound(Currency):
@@ -164,27 +164,40 @@ class Pound(Currency):
         if type(other) == Pound:
             new_value = float(self.value + other.value)
         elif type(other) != Pound:
-            new_value = float(self.value + float(other.to_currency(Pound).split(' ')[0]))
+            new_value = float(self.value + float(other.to_currency(Pound).value))
         return str(new_value) + ' GBR'
 
     def __eq__(self, other):
         if type(other) == Pound:
             new_value = self.value == other.value
         elif type(other) != Pound:
-            new_value = self.value == float(other.to_currency(Pound).split(' ')[0])
+            new_value = self.value == float(other.to_currency(Pound).value)
         return new_value
 
     def __lt__(self, other):
         if type(other) == Pound:
             new_value = self.value < other.value
         elif type(other) != Pound:
-            new_value = self.value < float(other.to_currency(Pound).split(' ')[0])
+            new_value = self.value < float(other.to_currency(Pound).value)
         return new_value
 
     def __gt__(self, other):
         if type(other) == Pound:
             new_value = self.value > other.value
         elif type(other) != Pound:
-            new_value = self.value > float(other.to_currency(Pound).split(' ')[0])
+            new_value = self.value > float(other.to_currency(Pound).value)
         return new_value
 
+
+
+
+e = Euro(100)
+r = Pound(100)
+d = Dollar(200)
+
+
+print(
+      f"e + r  =>  {e < r}\n"
+      f"r + d  =>  {r > d}\n"
+      f"d + e  =>  {d == e}\n"
+)
