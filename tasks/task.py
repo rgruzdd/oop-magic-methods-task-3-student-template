@@ -27,7 +27,7 @@ class Euro(Currency):
             foreign_currency = str(2.0) + ' USD'
         elif other_cls == Pound:
             foreign_currency = str(100.0) + ' GBP'
-        return foreign_currency + ' for ' + current_currency
+        return str(foreign_currency) + ' for ' + str(current_currency)
 
     def to_currency(self, other_cls: Type[Currency]):
         current_currency = int(self.value)
@@ -88,7 +88,7 @@ class Dollar(Currency):
             foreign_currency = str(0.5) + ' EUR'
         elif other_cls == Pound:
             foreign_currency = str(50.0) + ' GBP'
-        return foreign_currency + ' for ' + current_currency
+        return str(foreign_currency) + ' for ' + str(current_currency)
 
     def to_currency(self, other_cls: Type[Currency]):
         current_currency = int(self.value)
@@ -150,7 +150,7 @@ class Pound(Currency):
             foreign_currency = str(0.02) + ' USD'
         elif other_cls == Euro:
             foreign_currency = str(0.01) + ' EUR'
-        return foreign_currency + ' for ' + current_currency
+        return str(foreign_currency) + ' for ' + str(current_currency)
 
     def to_currency(self, other_cls: Type[Currency]):
         current_currency = int(self.value)
@@ -198,3 +198,12 @@ class Pound(Currency):
         elif type(other) != Pound:
             new_value = self.value > float(other.to_currency(Pound).split(' ')[0])
         return new_value
+
+
+
+
+print(
+      f"Euro.course(Pound)   ==> {Euro.course(Pound)}\n"
+      f"Dollar.course(Pound) ==> {Dollar.course(Pound)}\n"
+      f"Pound.course(Euro)   ==> {Pound.course(Euro)}\n"
+  )
