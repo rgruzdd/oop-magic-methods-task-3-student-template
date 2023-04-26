@@ -16,13 +16,12 @@ class Currency:
 
 class Euro(Currency):
     def __init__(self, value: float):
-
         super().__init__(value)
 
     @classmethod
     def course(cls, other_cls: Type[Currency]) -> str:
         current_currency = str(1) + ' EUR'
-        foreign_currency = str(1.0)
+        foreign_currency = str(1.0) + ' EUR'
         if other_cls == Dollar:
             foreign_currency = str(2.0) + ' USD'
         elif other_cls == Pound:
@@ -33,17 +32,14 @@ class Euro(Currency):
         current_currency = int(self.value)
         foreign_currency = 0
         if other_cls == Euro:
-            foreign_currency = int(current_currency)
-            string = str(float(foreign_currency)) + ' EUR'
-            return string
+            foreign_currency = float(current_currency)
+            return Euro(foreign_currency)
         elif other_cls == Dollar:
-            foreign_currency = (int(current_currency) * 2)
-            string = str(float(foreign_currency)) + ' USD'
-            return string
+            foreign_currency = (float(current_currency) * 2)
+            return Dollar(foreign_currency)
         elif other_cls == Pound:
-            foreign_currency = (int(current_currency) * 100)
-        string = str(float(foreign_currency)) + ' GBR'
-        return string
+            foreign_currency = (float(current_currency) * 100)
+        return Pound(foreign_currency)
 
     def __str__(self):
         return str(self.value) + ' EUR'
@@ -83,7 +79,7 @@ class Dollar(Currency):
     @classmethod
     def course(cls, other_cls: Type[Currency]) -> str:
         current_currency = str(1) + ' USD'
-        foreign_currency = str(1.0)
+        foreign_currency = str(1.0) + ' USD'
         if other_cls == Euro:
             foreign_currency = str(0.5) + ' EUR'
         elif other_cls == Pound:
@@ -94,17 +90,14 @@ class Dollar(Currency):
         current_currency = int(self.value)
         foreign_currency = 0
         if other_cls == Euro:
-            foreign_currency = (int(current_currency) * 0.5)
-            string = str(float(foreign_currency)) + ' EUR'
-            return string
+            foreign_currency = float(current_currency) * 0.5
+            return Euro(foreign_currency)
         elif other_cls == Dollar:
-            foreign_currency = int(current_currency)
-            string = str(float(foreign_currency)) + ' USD'
-            return string
+            foreign_currency = float(current_currency)
+            return Dollar(foreign_currency)
         elif other_cls == Pound:
-            foreign_currency = (int(current_currency) * 50)
-        string = str(float(foreign_currency)) + ' GBR'
-        return string
+            foreign_currency = float(current_currency) * 50
+        return Pound(foreign_currency)
 
     def __str__(self):
         return str(self.value) + ' USD'
@@ -144,8 +137,7 @@ class Pound(Currency):
     @classmethod
     def course(cls, other_cls: Type[Currency]) -> str:
         current_currency = str(1) + ' GBP'
-        foreign_currency = str(1.0)
-
+        foreign_currency = str(1.0) + ' GBP'
         if other_cls == Dollar:
             foreign_currency = str(0.02) + ' USD'
         elif other_cls == Euro:
@@ -156,17 +148,14 @@ class Pound(Currency):
         current_currency = int(self.value)
         foreign_currency = 0
         if other_cls == Euro:
-            foreign_currency = (int(current_currency) * 0.01)
-            string = str(float(foreign_currency)) + ' EUR'
-            return string
+            foreign_currency = float(current_currency) * 0.01
+            return Euro(foreign_currency)
         elif other_cls == Dollar:
-            foreign_currency = (int(current_currency) * 0.02)
-            string = str(float(foreign_currency)) + ' USD'
-            return string
+            foreign_currency = float(current_currency) * 0.02
+            return Dollar(foreign_currency)
         elif other_cls == Pound:
-            foreign_currency = (int(current_currency) * 1)
-        string = str(float(foreign_currency)) + ' GBR'
-        return string
+            foreign_currency = float(current_currency) * 1
+        return Pound(foreign_currency)
 
     def __str__(self):
         return str(self.value) + ' GBP'
